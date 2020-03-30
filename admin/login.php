@@ -30,11 +30,6 @@ if (isset($_POST['submit']) && !empty($_POST['username']) && !empty($_POST['pass
 
     $password = $_POST['password'];
 
-    if(strlen($username)>16||strlen($password)>16){
-    	                echo "<script>alert('username or password is wrong');history.go(-1);</script>";
-                exit();
-    }
-
 	try{
             $dsn="mysql:host=$mysrv;dbname=$mydb;";
             $pdo=new PDO($dsn,$myuser,$mypwd);
