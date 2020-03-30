@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css">
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	</head>
+
+	<style>
+.mycenter{
+	margin-top: 100px;
+	margin-left: auto;
+	margin-right: auto;
+	height: 350px;
+	width:500px;
+	padding: 5%;
+	padding-left: 5%;
+	padding-right: 5%;
+}
+.mycenter mysign{
+	width: 440px;
+}
+.mycenter input,checkbox,button{
+	margin-top:2%;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+.mycheckbox{
+	margin-top:10px;
+	margin-left: 40px;
+	margin-bottom: 10px;
+	height: 10px;
+}
+	</style>
+
+	<body>
+		<form action="login.php" method="post">
+			<div class="mycenter">
+			<div class="mysign">
+				<div class="col-lg-11 text-center text-info">
+					<h2>Login</h2>
+				</div>
+				<div class="col-lg-10">
+					<input type="text" class="form-control" name="username" placeholder="username" id="username"/>
+				</div>
+				<div class="col-lg-10"></div>
+				<div class="col-lg-10">
+					<input type="password" class="form-control" name="password" placeholder="password" id="password"/>
+				</div>
+				<div class="col-lg-10"></div>
+				<div class="col-lg-10"></div>
+				<div class="col-lg-10">
+					<input type="submit" name="submit" value="login" class="btn btn-success col-lg-12">
+				</div>
+			</div>
+		</div>
+		</form>
+	</body>
+</html>
