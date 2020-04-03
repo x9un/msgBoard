@@ -101,6 +101,7 @@ try{
 $dsn="mysql:host=$mysrv;dbname=$mydb;";
 $pdo=new PDO($dsn,$myuser,$mypwd);
 $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+$pdo->setAttribute(PDO::MYSQL_ATTR_MULTI_STATEMENTS, false);
 if ($is_upload){
   $sql = $pdo->prepare("insert into comment (username,message,photo,pub_date) values (?,?,?,?)");
   $sql->execute(array($username,$message,$img_path,$pub_date));
