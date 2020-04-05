@@ -3,6 +3,10 @@
 header("content-type:text/html;charset=utf-8");
 include_once('conn.php');
 
+session_start();
+$code=mt_rand(0,1000000);
+$_SESSION['code']=$code;
+
   $sql = "SELECT * FROM comment order by id desc";
   $query = mysqli_query($conn,$sql) or die('Error!!');
   mysqli_close($conn);
@@ -47,6 +51,7 @@ include_once('conn.php');
 				<div class="col-lg-10"></div>
 				<div class="col-lg-10"></div>
 				<div class="col-lg-10">
+					<input type="hidden" name="code" value="<?=$code?>">
 					<input type="submit" name="submit" value="submit" class="btn btn-success col-lg-12">
 				</div>
 			
@@ -61,10 +66,10 @@ include_once('conn.php');
 	<?php
 while($com = mysqli_fetch_array($query)) {
 
-	$html['username'] = strip_tags(htmlspecialchars($com['username'],ENT_QUOTES));
-	$html['message'] = strip_tags(htmlspecialchars($com['message'],ENT_QUOTES));
+	$html['username'] = $com['username'];
+	$html['message'] = $com['message'];
 	$pub_date=$com['pub_date'];
-	$photo=strip_tags(htmlspecialchars($com['photo'],ENT_QUOTES));
+	$photo=$com['photo'];
 	echo '<tr>';
 	echo '<th>username:</th>';
 	echo '<td>'.$html['username'].'</td>';
