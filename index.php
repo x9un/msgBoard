@@ -4,7 +4,7 @@ header("content-type:text/html;charset=utf-8");
 include_once('conn.php');
 
 session_start();
-$code=mt_rand(0,1000000);
+$code=md5(microtime(true));
 $_SESSION['code']=$code;
 
   $sql = "SELECT * FROM comment order by id desc";
