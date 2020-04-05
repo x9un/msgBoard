@@ -2,6 +2,10 @@
 
 header("content-type:text/html;charset=utf-8");
 include_once('conn.php');
+session_start();
+
+if(isset($_POST['code'])&&isset($_POST['submit'])){
+    if($_POST['code']==$_SESSION['code']){
 
 
 $dir="img";
@@ -55,24 +59,30 @@ if(!empty($_FILES['file']['size'])&&($_FILES['file']['size'])<1048577){
 
 
 
-
             if($width>1000||$height>1000){
-                echo "<script>alert('文件上传失败');history.go(-1)</script>";
+                echo "<script>alert('文件上传失败');</script>";
                 exit();
             }else if (move_uploaded_file($temp_path, $img_path)) {
      
-                echo "<script>alert('文件上传成功');history.go(-1)</script>";
+                echo "<script>alert('文件上传成功');</script>";
                 $is_upload = true;
             } else {
-                echo "<script>alert('文件上传失败');history.go(-1)</script>";
+                echo "<script>alert('文件上传失败');</script>";
             }
+
+            //删除临时图片文件
+            if( file_exists( $temp_path ) ) {
+                unlink( $temp_path );
+            }
+
+
         }
     }
 }
 
 
-$message = strip_tags(htmlspecialchars($_POST['message'],ENT_QUOTES));
-$username=strip_tags(htmlspecialchars($_POST['username'],ENT_QUOTES));
+$message = htmlspecialchars($_POST['message'],ENT_QUOTES, 'UTF-8', false);
+$username=htmlspecialchars($_POST['username'],ENT_QUOTES, 'UTF-8', false);
 
 if((!$message)&&(!$is_upload)){
     echo "<script>alert('留言与图片不能皆为空');history.go(-1)</script>";
@@ -84,7 +94,7 @@ if($username==null){
     exit();
 }
 
-if (strlen($username)>=10){
+if (strlen($username)>=255){
     echo "<script>alert('用户名过长');history.go(-1)</script>";
     exit();
 }
@@ -121,6 +131,17 @@ if ($is_upload){
     echo $e->getMessage().'<br>';
     echo $e->getLine().'<br>';
     echo $e->__toString().'<br>';
+    }
+
+unset($_SESSION["code"]);
+
+}else{
+    echo '<script>alert("please do not resubmit");
+    history.go(-1);</script>';
+ }
+}else{
+    echo '<script>alert("error");
+    history.go(-1);</script>';
 }
 
 ?>
